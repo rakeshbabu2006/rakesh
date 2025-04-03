@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Bestie!</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: "Work Sans", sans-serif;
+      background-color: #f9e79f;
+      color: #d35400;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container {
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Greeting Section */
+    .greeting {
+      font-size: 2.5rem;
+      margin-top: 20%;
+    }
+
+    .greeting span {
+      display: block;
+      margin: 10px 0;
+    }
+
+    /* Button */
+    .btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      background-color: #c0392b;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #ff5722;
+      border-radius: 50%;
+      animation: fall 5s linear forwards;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-100vh);
+      }
+      to {
+        transform: translateY(100vh);
+      }
+    }
+
+    /* Balloons */
+    .balloon {
+      width: 50px;
+      position: absolute;
+      animation: float 5s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-50px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="Natpu karaoke (Tamil) - RRR - Anirudh, Maragathamani _ NTR, Ram Charan _ SS Rajamoul.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="container">
+    <h1 class="greeting" id="animatedText">
+      <span>🎉 Hey there,</span>
+      <span>Bestfriend🤍!!!</span>
+    </h1>
+    <p>I have a little surprise for you... 🎁</p>
+    <button class="btn" onclick="window.location.href='part1.html'">Click Me!</button>
+    <div id="countdown" style="font-size: 1.5rem; margin-top: 20px;"></div>
+    <p id="interactiveText" style="margin-top: 20px;">Click anywhere to see a surprise!</p>
+  </div>
+
+  <!-- Fireworks Canvas -->
+  <canvas id="fireworks" style="position: absolute; top: 0; left: 0; z-index: -1;"></canvas>
+
+  <script>
+    // Countdown Timer
+    const eventDate = new Date("2023-10-15T18:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const timeLeft = eventDate - now;
+
+      if (timeLeft <= 0) {
+        document.getElementById('countdown').innerHTML = "🎉 It's Party Time! 🎉";
+        return;
+      }
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+
+    // Interactive Wishes
+    document.body.addEventListener('click', () => {
+      const messages = ["You're amazing!", "I’m so lucky to have you!", "Happy Birthday, Bestfriend!!!"];
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      document.getElementById('interactiveText').textContent = randomMessage;
+    });
+
+    // Create Confetti
+    function createConfetti() {
+      setInterval(() => {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.top = `${Math.random() * 100}vh`;
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 50%)`;
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+      }, 200);
+    }
+
+    // Create Balloons
+    function createBalloons() {
+      const balloonsContainer = document.querySelector('.balloons');
+      const colors = ['#ff5722', '#3498db', '#2ecc71', '#e74c3c'];
+
+      for (let i = 0; i < 20; i++) {
+        const balloon = document.createElement('img');
+        balloon.src = '"C:\Users\Admin\Downloads\IMG-20250221-WA0033.jpg"';
+        balloon.style.width = '50px';
+        balloon.style.position = 'absolute';
+        balloon.style.left = `${Math.random() * 100}vw`;
+        balloon.style.bottom = '-100px';
+        balloon.style.animation = `float ${Math.random() * 5 + 3}s infinite ease-in-out`;
+
+        balloonsContainer.appendChild(balloon);
+      }
+    }
+
+    // Initialize Animations
+    window.onload = () => {
+      createConfetti();
+      createBalloons();
+    };
+  </script>
+</body>
+</html>

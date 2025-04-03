@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Our Memories</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: "Work Sans", sans-serif;
+      background-color: #f9e79f;
+      color: #d35400;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container {
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Back Button */
+    .back-btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .back-btn:hover {
+      background-color: #2980b9;
+    }
+
+    /* Gallery Styles */
+    .gallery {
+      position: relative;
+      width: 60%;
+      max-width: 600px;
+      margin: 20px auto;
+      perspective: 1000px; /* Adds depth to the 3D transformation */
+    }
+
+    .gallery img {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: transform 0.5s ease-in-out;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Stacked Photos Effect */
+    .gallery img:nth-child(1) {
+      z-index: 5;
+    }
+    .gallery img:nth-child(2) {
+      z-index: 4;
+      transform: rotateY(-10deg) translateZ(-10px);
+    }
+    .gallery img:nth-child(3) {
+      z-index: 3;
+      transform: rotateY(-20deg) translateZ(-20px);
+    }
+    .gallery img:nth-child(4) {
+      z-index: 2;
+      transform: rotateY(-30deg) translateZ(-30px);
+    }
+    .gallery img:nth-child(5) {
+      z-index: 1;
+      transform: rotateY(-40deg) translateZ(-40px);
+    }
+
+    /* Slideshow Animation */
+    @keyframes slideShow {
+      0% { transform: translateY(0); }
+      20% { transform: translateY(-100%); }
+      40% { transform: translateY(0); }
+      60% { transform: translateY(0); }
+      80% { transform: translateY(-100%); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Slideshow Container */
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .slideshow-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: slideShow 10s infinite;
+    }
+
+    /* Easter Egg */
+    #easterEgg {
+      cursor: pointer;
+      color: blue;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Back Button -->
+    <button class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
+
+    <!-- Gallery Title -->
+    <h1 class="greeting">📸 Our Memories 📸</h1>
+
+    <!-- Slideshow Gallery -->
+    <div class="slideshow-container">
+      <img src="https://via.placeholder.com/600x400?text=Photo+1" alt="Memory 1">
+      <img src="https://via.placeholder.com/600x400?text=Photo+2" alt="Memory 2">
+      <img src="https://via.placeholder.com/600x400?text=Photo+3" alt="Memory 3">
+      <img src="https://via.placeholder.com/600x400?text=Photo+4" alt="Memory 4">
+      <img src="https://via.placeholder.com/600x400?text=Photo+5" alt="Memory 5">
+    </div>
+
+    <!-- Stacked Photos Effect -->
+    <div class="gallery">
+      <img src="https://via.placeholder.com/600x400?text=Photo+1" alt="Memory 1">
+      <img src="https://via.placeholder.com/600x400?text=Photo+2" alt="Memory 2">
+      <img src="https://via.placeholder.com/600x400?text=Photo+3" alt="Memory 3">
+      <img src="https://via.placeholder.com/600x400?text=Photo+4" alt="Memory 4">
+      <img src="https://via.placeholder.com/600x400?text=Photo+5" alt="Memory 5">
+    </div>
+
+    <!-- Easter Egg -->
+    <p id="easterEgg">Click me for a secret surprise!</p>
+  </div>
+
+  <script>
+    // Easter Egg
+    document.getElementById('easterEgg').addEventListener('click', () => {
+      alert("You found an easter egg! 🥚🎉");
+    });
+  </script>
+</body>
+</html>
